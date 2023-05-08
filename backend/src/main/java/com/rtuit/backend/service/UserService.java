@@ -5,6 +5,7 @@ import com.rtuit.backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService extends CrudService<User, Integer> {
@@ -17,5 +18,9 @@ public class UserService extends CrudService<User, Integer> {
 
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public Set<String> findAllEmailsBySubscribedCategory(int categoryId) {
+        return userRepository.findAllEmailsBySubscribedCategory(categoryId);
     }
 }
