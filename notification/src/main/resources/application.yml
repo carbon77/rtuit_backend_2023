@@ -1,1 +1,21 @@
+app:
+  firebase:
+    firebase-config: classpath:firebase-config.json
 
+spring:
+  mail:
+    host: <YOUR_HOST>
+    port: <YOUR_PORT>
+    username: <YOUR_USERNAME>
+    password: <YOUR_PASSWORD>
+
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            trust: <YOUR_HOST>
+server:
+  port: 8088
