@@ -36,7 +36,7 @@ public class SecurityConfig {
                 .permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/**")
                 .permitAll()
-                .requestMatchers("/api/subscriptions/**")
+                .requestMatchers("/api/subscribe")
                 .authenticated()
                 .anyRequest()
                 .hasAuthority("ADMIN")
