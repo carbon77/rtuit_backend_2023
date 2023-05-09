@@ -38,7 +38,6 @@ public class SubscriptionController {
 
         Subscription subscription = subscriptionService.findByUserAndCategory(user, category);
         subscription.setEmailEnabled(subcribeRequestData.emailEnabled);
-        subscription.setPushEnabled(subcribeRequestData.pushEnabled);
 
         subscriptionService.save(subscription);
 
@@ -47,8 +46,7 @@ public class SubscriptionController {
 
     private record SubcribeRequestData(
             int categoryId,
-            boolean emailEnabled,
-            boolean pushEnabled
+            boolean emailEnabled
     ) {
     }
 }

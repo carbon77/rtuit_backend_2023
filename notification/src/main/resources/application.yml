@@ -1,7 +1,3 @@
-app:
-  firebase:
-    firebase-config: classpath:firebase-config.json
-
 spring:
   mail:
     host: <YOUR_HOST>

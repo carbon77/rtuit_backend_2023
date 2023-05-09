@@ -19,7 +19,6 @@ public class Subscription {
     private Integer id;
 
     private boolean emailEnabled;
-    private boolean pushEnabled;
 
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "event_category_id", nullable = false)
