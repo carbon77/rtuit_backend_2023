@@ -28,13 +28,16 @@ public class Event {
 
     private Timestamp endTime;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
     private EventCategory eventCategory;
 
     @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     @Embeddable
-    private static class EventAddress {
+    public static class EventAddress {
         private String city;
         private String street;
         private String buildingNumber;
