@@ -14,4 +14,4 @@ spring:
           ssl:
             trust: <YOUR_HOST>
 server:
-  port: 8088
+  port: 8082
