@@ -26,3 +26,6 @@ app:
     expiration:
       time-amount: 2
       time-unit: DAYS
+
+server:
+  port: 8081
