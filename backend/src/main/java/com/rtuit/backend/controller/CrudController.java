@@ -2,8 +2,10 @@ package com.rtuit.backend.controller;
 
 import com.rtuit.backend.service.CrudService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +23,9 @@ public abstract class CrudController<T, ID> {
     @GetMapping("/{id}")
     public ResponseEntity<T> getById(@PathVariable ID id) {
         Optional<T> result = service.findById(id);
-        return result.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        return result.map(ResponseEntity::ok).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no entity with id" + id)
+        );
     }
 
     @GetMapping
@@ -31,13 +35,11 @@ public abstract class CrudController<T, ID> {
 
     @PutMapping("/{id}")
     public ResponseEntity<T> update(@PathVariable ID id, @RequestBody T entity) {
-        Optional<T> result = service.findById(id);
-        if (result.isPresent()) {
-            service.save(entity);
-            return ResponseEntity.ok(entity);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        T result = service.findById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no entity with id" + id)
+        );
+        service.save(result);
+        return ResponseEntity.ok(entity);
     }
 
     @DeleteMapping("/{id}")
