@@ -16,11 +16,21 @@ public class MailService {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setFrom("noreply@rtuit.com");
         mailMessage.setSubject(eventNotification.getName());
-        mailMessage.setText(String.format("%s\n\n%s", eventNotification.getName(), eventNotification.getDescription()));
+        mailMessage.setText(generateBody(eventNotification));
 
         for (String email : eventNotification.getEmails()) {
             mailMessage.setTo(email);
             mailSender.send(mailMessage);
         }
+    }
+
+    public String generateBody(EventNotification notification) {
+        String body = "";
+
+        body += notification.getName() + "\n\n";
+        body += notification.getDescription() + "\n\n";
+        body += String.format("Start time: %s\nEnd time: %s", notification.getStartTime(), notification.getEndTime());
+
+        return body;
     }
 }
