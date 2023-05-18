@@ -6,6 +6,8 @@ import com.rtuit.backend.model.User;
 import com.rtuit.backend.repository.SubscriptionRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 @Service
 public class SubscriptionService extends CrudService<Subscription, Integer> {
     private final SubscriptionRepository subscriptionRepository;
@@ -23,5 +25,9 @@ public class SubscriptionService extends CrudService<Subscription, Integer> {
                 .eventCategory(category)
                 .build()
         );
+    }
+
+    public Set<Subscription> findAllByUser(User user) {
+        return subscriptionRepository.findAllByUser(user);
     }
 }
